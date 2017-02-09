@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55b8d25b-c527-416d-8552-c8fea337aca8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Snake.iml" afterPath="$PROJECT_DIR$/.idea/Snake.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/snake_mod.py" afterPath="$PROJECT_DIR$/snake.py" />
-    </list>
+    <list default="true" id="55b8d25b-c527-416d-8552-c8fea337aca8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -394,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486568320626</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="The user snake class testing code&#10;'w' is up,'s' is down ,'a' is left,'d' is right&#10;The position number is 20*20 corresponding 0-399&#10;The print is the position of the snake&#10;">
+      <created>1486649185126</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1486649185126</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -430,7 +432,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="the first window" />
-    <option name="LAST_COMMIT_MESSAGE" value="the first window" />
+    <MESSAGE value="The user snake class testing code&#10;'w' is up,'s' is down ,'a' is left,'d' is right&#10;The position number is 20*20 corresponding 0-399&#10;The print is the position of the snake&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="The user snake class testing code&#10;'w' is up,'s' is down ,'a' is left,'d' is right&#10;The position number is 20*20 corresponding 0-399&#10;The print is the position of the snake&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
