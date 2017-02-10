@@ -59,23 +59,23 @@ class Snake:
                 if self.step > 5 and self.step % 5 != 0:
                     del self.hold[0]
         return self.hold
-snake = Snake()
-while True:
-    m = raw_input('the direction:')
-    if m == 's':
-        if(snake.down() == None):
-            print 'Defeat'
-            break
-    elif m == 'w':
-        if (snake.up() == None):
-            print 'Defeat'
-            break
-    elif m == 'a':
-        if (snake.left() == None):
-            print 'Defeat'
-            break
-    elif m == 'd':
-        if (snake.right() == None):
-            print 'Defeat'
-            break
-    print snake.hold
+# snake = Snake()
+# while True:
+#     m = raw_input('the direction:')
+#     if m == 's':
+#         if(snake.down() == None):
+#             print 'Defeat'
+#             break
+#     elif m == 'w':
+#         if (snake.up() == None):
+#             print 'Defeat'
+#             break
+#     elif m == 'a':
+#         if (snake.left() == None):
+#             print 'Defeat'
+#             break
+#     elif m == 'd':
+#         if (snake.right() == None):
+#             print 'Defeat'
+#             break
+#     print snake.hold
