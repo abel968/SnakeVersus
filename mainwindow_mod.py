@@ -19,8 +19,7 @@ class GridLayout(QtGui.QWidget):
         self.snake = snake.Snake()
         self.presnake = [0]             #means the position in the previous step
         map=[0 for x in range(400)]
-        # for i in range(400):
-        #     map.append(0)
+
 
         self.pe1 = QtGui.QPalette()
         self.pe1.setColor(self.backgroundRole(), QColor(192, 253, 123)) #configure the color of the Empty box
