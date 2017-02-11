@@ -20,7 +20,6 @@ class GridLayout(QtGui.QWidget):
         self.presnake = [0]             #means the position in the previous step
         map=[0 for x in range(400)]
 
-
         self.pe1 = QtGui.QPalette()
         self.pe1.setColor(self.backgroundRole(), QColor(192, 253, 123)) #configure the color of the Empty box
         self.pe2 = QtGui.QPalette()
@@ -55,6 +54,9 @@ class GridLayout(QtGui.QWidget):
             if i not in self.presnake:
                 self.lables[i].setPalette(self.pe2)
         self.presnake = self.snake.hold[:]
+
+
+
 app = QtGui.QApplication(sys.argv)
 gridlayout = GridLayout()
 gridlayout.show()
