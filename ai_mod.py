@@ -6,8 +6,11 @@ class AI(Snake):
     def __init__(self):
         self.step = 1
         self.hold = [399]
+
     def cal(self, newAIHead, *snake_hold):
+
         snake_hold1 = [x for x in snake_hold[0]]     #将参数转换为列表
+
         q = []    #q模拟一个队列
         l = 0   #l模拟指针
         dist=[0 for x in range(20*20)]     #dist表示距离矩阵
@@ -52,7 +55,9 @@ class AI(Snake):
         return summary
 
     def choose(self, *snake_hold):
+
         snake_hold1 = [m for m in snake_hold[0]]
+
         t = [20, -20, -1, 1]     #下上左右
         direction = -1
         val = -2e9
