@@ -4,7 +4,7 @@ import sys
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import *
-import snake, introduction
+import snake
 
 Window_Width = Window_Height = 600
 
@@ -13,7 +13,6 @@ class GridLayout(QtGui.QWidget):
 
     def __init__(self, parent = None):
 
-        global map
         QtGui.QWidget.__init__(self, parent)
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
