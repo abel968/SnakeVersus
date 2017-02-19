@@ -2,12 +2,12 @@
 import sys
 from PyQt4 import QtGui,QtCore,Qt
 from PyQt4.QtGui import *
-import snake
+import snake, introduction
 
 Window_Width = Window_Height = 600
 
-class GridLayout(QtGui.QWidget):
-    global Window_Height,Window_Width
+class MainWindow(QtGui.QWidget):
+    # global Window_Height,Window_Width
 
     def __init__(self, parent = None):
         global map
@@ -15,9 +15,12 @@ class GridLayout(QtGui.QWidget):
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
         self.setWindowIcon(QtGui.QIcon('./Image/snake_icon.png'))
+        self.initUI()
+
+    def initUI(self):
 
         self.snake = snake.Snake()
-        self.presnake = [0]             #means the position in the previous step
+        self.prev_snake = [0]             #means the position in the previous step
         map=[0 for x in range(400)]
 
         self.pe1 = QtGui.QPalette()
@@ -36,28 +39,40 @@ class GridLayout(QtGui.QWidget):
                 self.lables.append(label)
         self.lables[0].setPalette(self.pe2)
         self.grid.setSpacing(1)
-        self.setLayout(self.grid)
+
+        self.VBOX = QtGui.QVBoxLayout()
+        self.VBOX.addLayout(self.grid)
+
+        self.HELP_BUTTON = QtGui.QPushButton('Help')
+        self.HELP_BUTTON.clicked.connect(self.showHelp)
+        self.VBOX.addWidget(self.HELP_BUTTON)
+
+        self.setLayout(self.VBOX)
 
     def keyPressEvent(self, event):
-        if event.key() == QtCore.Qt.Key_S:
+        'Receive direction keys to control the user snake.'
+        if event.key() == QtCore.Qt.Key_S or event.key() == QtCore.Qt.Key_Down:
             self.snake.down()
-        elif event.key() == QtCore.Qt.Key_W:
+        elif event.key() == QtCore.Qt.Key_W or event.key() == QtCore.Qt.Key_Up:
             self.snake.up()
-        elif event.key() == QtCore.Qt.Key_A:
+        elif event.key() == QtCore.Qt.Key_A or event.key() == QtCore.Qt.Key_Left:
             self.snake.left()
-        elif event.key() == QtCore.Qt.Key_D:
+        elif event.key() == QtCore.Qt.Key_D or event.key() == QtCore.Qt.Key_Right:
             self.snake.right()
-        for i in self.presnake:
+        for i in self.prev_snake:
             if i not in self.snake.hold:
                 self.lables[i].setPalette(self.pe1)
         for i in self.snake.hold:
-            if i not in self.presnake:
+            if i not in self.prev_snake:
                 self.lables[i].setPalette(self.pe2)
-        self.presnake = self.snake.hold[:]
+        self.prev_snake = self.snake.hold[:]
 
-
+    def showHelp(self):
+        'show help document in new dialog'
+        HelpDialog = introduction.IntroWindow()
+        HelpDialog.show()
 
 app = QtGui.QApplication(sys.argv)
-gridlayout = GridLayout()
-gridlayout.show()
+main = MainWindow()
+main.show()
 sys.exit(app.exec_())
