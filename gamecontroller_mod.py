@@ -6,7 +6,9 @@ class Gamecontroller:
     def __init__(self):
         self.usersnake = snake.Snake()
         self.aisnake = ai_mod.AI()
-
+    def reset(self):
+        self.usersnake.__init__()
+        self.aisnake.__init__()
     def isAIOver(self):
         x = self.aisnake.hold[-1]
         t = [20, -20, -1, 1]  #up,down,left,right
@@ -15,11 +17,11 @@ class Gamecontroller:
             # 首先判断往各方向是否出界
             if (i == 0 and x >= 380 and x <= 399):
                 continue
-            elif (i == 1 and x >= 0 and x <= 20):
+            elif (i == 1 and x >= 0 and x <= 19):
                 continue
-            elif (i == 2 and x in [20 * x for x in range(20)]):
+            elif (i == 2 and x in [20 * n for n in range(20)]):
                 continue
-            elif (i == 3 and x in [19 + 20 * x for x in range(20)]):
+            elif (i == 3 and x in [19 + 20 * n for n in range(20)]):
                 continue
             xx = x + t[i]
             # 判断xx是否被占据
@@ -39,11 +41,11 @@ class Gamecontroller:
             # 首先判断往各方向是否出界
             if (i == 0 and x >= 380 and x <= 399):
                 continue
-            elif (i == 1 and x >= 0 and x <= 20):
+            elif (i == 1 and x >= 0 and x <= 19):
                 continue
-            elif (i == 2 and x in [20 * x for x in range(20)]):
+            elif (i == 2 and x in [20 * n for n in range(20)]):
                 continue
-            elif (i == 3 and x in [19 + 20 * x for x in range(20)]):
+            elif (i == 3 and x in [19 + 20 * n for n in range(20)]):
                 continue
             xx = x + t[i]
             # 判断xx是否被占据
