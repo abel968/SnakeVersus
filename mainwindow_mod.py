@@ -4,11 +4,10 @@ import sys
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import *
-import snake
 
 Window_Width = Window_Height = 600
 
-class GridLayout(QtGui.QWidget):
+class MainWindow(QtGui.QWidget):
     global Window_Height,Window_Width
 
     def __init__(self, parent = None):
@@ -42,18 +41,20 @@ class GridLayout(QtGui.QWidget):
                 self.grid.addWidget(label, i, j)
                 self.lables.append(label)
         self.grid.setSpacing(1)
-        self.VBOX = QtGui.QVBoxLayout()
-        self.VBOX.addLayout(self.grid)
 
-        self.HELP_BUTTON = QtGui.QPushButton('Help')
-        self.HELP_BUTTON.clicked.connect(self.showHelp)
-        self.VBOX.addWidget(self.HELP_BUTTON)
+        VBOX = QtGui.QVBoxLayout()
+        VBOX.addLayout(self.grid)
 
-        self.setLayout(self.VBOX)
+        HELP_BUTTON = QtGui.QPushButton('Help', parent=self)
+        HELP_BUTTON.clicked.connect(self.showHelp)
+        VBOX.addWidget(HELP_BUTTON)
+
+        self.setLayout(VBOX)
         self.beginGame()
 
-    #重新开始游戏
+
     def beginGame(self):
+        '重新开始游戏'
         self.begin = True    #表示游戏开始
         for i in self.user_pre:
             self.lables[i].setPalette(self.pe1)
@@ -71,24 +72,27 @@ class GridLayout(QtGui.QWidget):
 
     def showHelp(self):
         'show help document in new dialog'
-        HelpDialog = introduction.IntroWindow()
-        HelpDialog.show()
+        help_dialog = HelpWindow(parent=self)
+        help_dialog.show()
+        #help_dialog.exec_()
+        help_dialog.destroy()
 
     def keyPressEvent(self, event):
+        'Use direction keys to control snake, Use R key to Start/Restart a new game.'
         if not self.begin:
             return
         if event.key() == QtCore.Qt.Key_R:
             self.beginGame()
-        if event.key() == QtCore.Qt.Key_S:
+        if event.key() == QtCore.Qt.Key_S or event.key() == QtCore.Qt.Key_Down:
             if self.gc.usersnake.down(self.gc.aisnake.hold) == None:
                 return
-        elif event.key() == QtCore.Qt.Key_W:
+        elif event.key() == QtCore.Qt.Key_W or event.key() == QtCore.Qt.Key_Up:
             if self.gc.usersnake.up(self.gc.aisnake.hold) == None:
                 return
-        elif event.key() == QtCore.Qt.Key_A:
+        elif event.key() == QtCore.Qt.Key_A or event.key() == QtCore.Qt.Key_Left:
             if self.gc.usersnake.left(self.gc.aisnake.hold) == None:
                 return
-        elif event.key() == QtCore.Qt.Key_D:
+        elif event.key() == QtCore.Qt.Key_D or event.key() == QtCore.Qt.Key_Right:
             if self.gc.usersnake.right(self.gc.aisnake.hold) == None:
                 return
         else:
@@ -119,11 +123,17 @@ class GridLayout(QtGui.QWidget):
         self.ai_pre = self.gc.aisnake.hold[:]
         if not self.gc.isUserOver():  # 若该条件成立，则输出用户输
             self.begin = False
+            #introduction.callEndMessage()
             print "你输了"
-            #elf.beginGame()
+            #self.beginGame()
 
+class HelpWindow(QtGui.QWidget):
+    def __init__(self, parent=None):
+        QtGui.QWidget.__init__(self, parent)
+        self.resize(200,200)
+        self.setWindowTitle('Introduction')
 
 app = QtGui.QApplication(sys.argv)
-gridlayout = GridLayout()
-gridlayout.show()
+game_start = MainWindow()
+game_start.show()
 sys.exit(app.exec_())
