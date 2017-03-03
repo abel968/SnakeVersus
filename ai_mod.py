@@ -34,7 +34,8 @@ class AI(Snake):
                     continue
                 xx = x + t[i]
                 #判断xx是否被占据
-                if xx in snake_hold or xx in self.hold or xx == newAIHead:
+                ll = (self.step+dist[x]) / 5 + 4
+                if xx in snake_hold1[-ll-1:-1] or xx in self.hold[-ll:-1] or xx == newAIHead or xx == snake_hold1[-1] or xx==self.hold[-1]:
                     continue
                 if type[xx] != 0:
                     continue
@@ -44,14 +45,21 @@ class AI(Snake):
             l+=1
         #计算分数
         summary = 0
+        num1=0
+        num2=0
         for i in range(20*20):
             if dist[i] == 0:
                 continue
             if type[i] == 1:
-                summary -= 1/math.sqrt(dist[i])
-            else:
-                summary += 1/math.sqrt(dist[i])
+                num1+=1
+                summary -= 1/dist[i]**0.1
+                #summary -= 1 / dist[i]
 
+            else:
+                num2 += 1
+                summary += 1.0 / dist[i]**0.5
+                #summary += 1 / dist[i]
+        #print 'num1=', num1,' ','num2=', num2
         return summary
 
     def choose(self, *snake_hold):
