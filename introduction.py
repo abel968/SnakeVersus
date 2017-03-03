@@ -10,7 +10,7 @@ class HelpWindow(QtGui.QDialog):
     def initUI(self):
         self.resize(400,400)
         self.setWindowTitle('Introduction')
-        self.intro_text= '这是一款人机对战游戏\n玩家控制一条逐渐增长\n的蓝色巨龙，\n与AI土蛇PK，将对方\n怼死算赢。\n祝游戏愉快～～'
+        self.intro_text= u'这是一款人机对战游戏\n玩家控制一条逐渐增长\n的蓝色巨龙，\n与AI土蛇PK，将对方\n怼死算赢。\n祝游戏愉快～～'
 
         vbox = QtGui.QVBoxLayout()
         vbox.addStretch(1)

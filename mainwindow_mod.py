@@ -82,7 +82,7 @@ class MainWindow(QtGui.QWidget):
         help_dialog.destroy()
 
     def keyPressEvent(self, event):
-        'Use direction keys to control snake, Use R key to Start/Restart a new game'
+        'Use direction keys to control snake, Use R key to reset the game, Use H key for help'
         if not self.begin:
             return
         if event.key() == QtCore.Qt.Key_R:
@@ -144,7 +144,3 @@ class HelpWindow(QtGui.QWidget):
         self.resize(200,200)
         self.setWindowTitle('Introduction')
 
-app = QtGui.QApplication(sys.argv)
-game_start = MainWindow()
-game_start.show()
-sys.exit(app.exec_())
