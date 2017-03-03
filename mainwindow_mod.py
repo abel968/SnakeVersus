@@ -42,14 +42,14 @@ class MainWindow(QtGui.QWidget):
                 self.lables.append(label)
         self.grid.setSpacing(1)
 
-        VBOX = QtGui.QVBoxLayout()
-        VBOX.addLayout(self.grid)
+        vbox = QtGui.QVBoxLayout()
+        vbox.addLayout(self.grid)
 
-        HELP_BUTTON = QtGui.QPushButton('Help', parent=self)
-        HELP_BUTTON.clicked.connect(self.showHelp)
-        VBOX.addWidget(HELP_BUTTON)
+        help_button = QtGui.QPushButton('Help', parent=self)
+        help_button.clicked.connect(self.showHelp)
+        vbox.addWidget(help_button)
 
-        self.setLayout(VBOX)
+        self.setLayout(vbox)
         self.beginGame()
 
 
