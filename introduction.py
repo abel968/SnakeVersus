@@ -1,10 +1,10 @@
 import sys
-from PyQt4 import QtGui
+from PyQt4 import QtGui,QtCore
 
-class HelpWindow(QtGui.QWidget):
+class HelpWindow(QtGui.QDialog):
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.setGeometry = (100, 100, 280, 170)
+        QtGui.QDialog.__init__(self, parent)
+        self.resize(200,200)
         self.setWindowTitle('Introduction')
         #self.drawText()
 
@@ -13,10 +13,10 @@ class HelpWindow(QtGui.QWidget):
     #     qp.setFont(QtGui.QFont('Decorative', 10))
     #     qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.text)
 
-class EndMessage(QtGui.QWidget):
+class EndMessage(QtGui.QDialog):
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self,parent)
-        self.setGeometry = (300,300,280,170)
+        QtGui.QDialog.__init__(self,parent)
+        self.resize(200,200)
         self.setWindowTitle('GameOver')
 
 

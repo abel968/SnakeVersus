@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import gamecontroller_mod
+import gamecontroller_mod,introduction
 import sys
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
@@ -12,7 +12,7 @@ class MainWindow(QtGui.QWidget):
 
     def __init__(self, parent = None):
 
-        QtGui.QWidget.__init__(self, parent)
+        QtGui.QMainWindow.__init__(self, parent)
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
         self.setWindowIcon(QtGui.QIcon('./Image/snake_icon.png'))
@@ -72,9 +72,8 @@ class MainWindow(QtGui.QWidget):
 
     def showHelp(self):
         'show help document in new dialog'
-        help_dialog = HelpWindow(parent=self)
-        help_dialog.show()
-        #help_dialog.exec_()
+        help_dialog = introduction.HelpWindow(parent=self)
+        help_dialog.exec_()
         help_dialog.destroy()
 
     def keyPressEvent(self, event):
