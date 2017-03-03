@@ -45,16 +45,21 @@ class MainWindow(QtGui.QWidget):
         vbox = QtGui.QVBoxLayout()
         vbox.addLayout(self.grid)
 
-        help_button = QtGui.QPushButton('Help', parent=self)
+        bottom_hbox = QtGui.QHBoxLayout()
+        help_button = QtGui.QPushButton('(H)elp', parent=self)
         help_button.clicked.connect(self.showHelp)
-        vbox.addWidget(help_button)
-
+        restart_button = QtGui.QPushButton('(R)estart',parent=self)
+        restart_button.clicked.connect(self.beginGame)
+        bottom_hbox.addWidget(help_button)
+        bottom_hbox.addWidget(restart_button)
+        vbox.addLayout(bottom_hbox)
         self.setLayout(vbox)
+
         self.beginGame()
 
 
     def beginGame(self):
-        '重新开始游戏'
+        'Reset the game'
         self.begin = True    #表示游戏开始
         for i in self.user_pre:
             self.lables[i].setPalette(self.pe1)
@@ -77,11 +82,13 @@ class MainWindow(QtGui.QWidget):
         help_dialog.destroy()
 
     def keyPressEvent(self, event):
-        'Use direction keys to control snake, Use R key to Start/Restart a new game.'
+        'Use direction keys to control snake, Use R key to Start/Restart a new game'
         if not self.begin:
             return
         if event.key() == QtCore.Qt.Key_R:
             self.beginGame()
+        if event.key() == QtCore.Qt.Key_H:
+            self.showHelp()
         if event.key() == QtCore.Qt.Key_S or event.key() == QtCore.Qt.Key_Down:
             if self.gc.usersnake.down(self.gc.aisnake.hold) == None:
                 return
