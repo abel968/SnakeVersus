@@ -14,6 +14,7 @@ class HelpWindow(QtGui.QDialog):
 
         vbox = QtGui.QVBoxLayout()
         vbox.addStretch(1)
+        #or use label?
         back_button = QtGui.QPushButton('Back',parent=self)
         back_button.clicked.connect(self.reject)
         vbox.addWidget(back_button)
