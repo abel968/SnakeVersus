@@ -10,7 +10,10 @@ class HelpWindow(QtGui.QDialog):
     def initUI(self):
         self.resize(400,400)
         self.setWindowTitle('Introduction')
-        self.intro_text= u'这是一款人机对战游戏\n玩家控制一条逐渐增长\n的蓝色巨龙，\n与AI土蛇PK，将对方\n怼死算赢。\n祝游戏愉快～～'
+        self.intro_text= u'这是一款人机对战游戏\n使用WASD或方向键\n' \
+                         u'控制一条逐渐增长\n的金色巨龙，与AI\n决一死战，' \
+                         u'\n在将AI逼上梁山的同时\n要避免自己无路可走。' \
+                         u'\n按R键重新开局。\n祝游戏愉快～'
 
         vbox = QtGui.QVBoxLayout()
         vbox.addStretch(1)
@@ -48,7 +51,6 @@ class EndWindow(QtGui.QDialog):
         # or use label?
         return_button = QtGui.QPushButton('Return', parent=self)
         return_button.clicked.connect(self.reject)
-        #return_button.clicked.connect(resetGame(mainwindow))
         vbox.addWidget(return_button)
 
         self.setLayout(vbox)

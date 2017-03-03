@@ -11,21 +11,22 @@ class MainWindow(QtGui.QWidget):
     global Window_Height,Window_Width
 
     def __init__(self, parent = None):
-
         QtGui.QMainWindow.__init__(self, parent)
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
         self.setWindowIcon(QtGui.QIcon('./Image/snake_icon.png'))
+        self.initUI()
 
+    def initUI(self):
         self.gc = gamecontroller_mod.Gamecontroller()
         self.begin = True  # 表示游戏未开始
 
         self.pe1 = QtGui.QPalette()
         self.pe1.setColor(self.backgroundRole(), QColor(192, 253, 123)) #configure the color of the Empty box
         self.pe2 = QtGui.QPalette()
-        self.pe2.setColor(self.backgroundRole(), QColor(192, 0, 123))  # configure the color of the User box
+        self.pe2.setColor(self.backgroundRole(), QColor(255, 255, 0))  # configure the color of the User box
         self.pe3 = QtGui.QPalette()
-        self.pe3.setColor(self.backgroundRole(), QColor(0, 0, 255))  # configure the color of the AI box
+        self.pe3.setColor(self.backgroundRole(), QColor(255, 0, 0))  # configure the color of the AI box
         self.grid = QtGui.QGridLayout()
 
         self.user_pre = [0]  # means the user's position in the previous step
@@ -56,7 +57,6 @@ class MainWindow(QtGui.QWidget):
         self.setLayout(vbox)
 
         self.beginGame()
-
 
     def beginGame(self):
         'Reset the game'
@@ -101,6 +101,7 @@ class MainWindow(QtGui.QWidget):
         elif event.key() == QtCore.Qt.Key_D or event.key() == QtCore.Qt.Key_Right:
             if self.gc.usersnake.right(self.gc.aisnake.hold) == None:
                 return
+
         else:
             return
         for i in self.user_pre:
@@ -114,7 +115,6 @@ class MainWindow(QtGui.QWidget):
         self.user_pre = self.gc.usersnake.hold[:]
         if not self.gc.isAIOver():  # 若该条件成立，则输出用户赢
             self.begin = False
-            #print "你赢了"
             end_dialog = introduction.EndWindow(1,parent=None)
             end_dialog.exec_()
             end_dialog.destroy()
@@ -132,15 +132,7 @@ class MainWindow(QtGui.QWidget):
         self.ai_pre = self.gc.aisnake.hold[:]
         if not self.gc.isUserOver():  # 若该条件成立，则输出用户输
             self.begin = False
-            #print "你输了"
             end_dialog = introduction.EndWindow(2,parent=None)
             end_dialog.exec_()
             end_dialog.destroy()
             self.beginGame()
-
-class HelpWindow(QtGui.QWidget):
-    def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.resize(200,200)
-        self.setWindowTitle('Introduction')
-
