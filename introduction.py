@@ -32,24 +32,44 @@ class HelpWindow(QtGui.QDialog):
         qp.setFont(QtGui.QFont('Decorative', 18))
         qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.intro_text)
 
+
 class EndWindow(QtGui.QDialog):
-    def __init__(self, parent=None):
+    def __init__(self,signal,parent=None):
         QtGui.QDialog.__init__(self,parent)
-        initUI()
+        self.end_text = setEndText(signal)
+        self.initUI()
 
     def initUI(self):
         self.resize(200,200)
-        self.setWindowTitle('GameOver')
+        self.setWindowTitle('Game Over')
+
         vbox = QtGui.QVBoxLayout()
+        vbox.addStretch(1)
+        # or use label?
+        return_button = QtGui.QPushButton('Return', parent=self)
+        return_button.clicked.connect(self.reject)
+        #return_button.clicked.connect(resetGame(mainwindow))
+        vbox.addWidget(return_button)
+
+        self.setLayout(vbox)
+
+    def paintEvent(self, event):
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        self.drawText(event,qp)
+        qp.end()
+
+    def drawText(self, event, qp):
+        qp.setPen(QtGui.QColor(168, 34, 3))
+        qp.setFont(QtGui.QFont('Decorative', 18))
+        qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.end_text)
 
 
-def callEndMessage(SIGNAL):
-    'SIGNAL here should be the method isAI/UserOver'
+def setEndText(signal):
+    'set the end_text according to the game signal.'
     win_text = 'Congratuations! :D'
-    defeat_text = 'Defeat >_<'
-    end_message = EndMessage()
-    if SIGNAL == 1:
-        text = 'You Win!'
-    elif SIGNAL == 2:
-        text = 'Defeat...'
-    end_message.show()
+    defeat_text = 'Sorry, Defeat >_<'
+    if signal == 1:
+        return win_text
+    elif signal == 2:
+        return defeat_text

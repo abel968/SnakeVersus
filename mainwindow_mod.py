@@ -107,8 +107,11 @@ class MainWindow(QtGui.QWidget):
         self.user_pre = self.gc.usersnake.hold[:]
         if not self.gc.isAIOver():  # 若该条件成立，则输出用户赢
             self.begin = False
-            print "你赢了"
-            #self.beginGame()
+            #print "你赢了"
+            end_dialog = introduction.EndWindow(1,parent=None)
+            end_dialog.exec_()
+            end_dialog.destroy()
+            self.beginGame()
             return
         self.gc.AIChoose()
         for i in self.ai_pre:
@@ -122,9 +125,11 @@ class MainWindow(QtGui.QWidget):
         self.ai_pre = self.gc.aisnake.hold[:]
         if not self.gc.isUserOver():  # 若该条件成立，则输出用户输
             self.begin = False
-            #introduction.callEndMessage()
-            print "你输了"
-            #self.beginGame()
+            #print "你输了"
+            end_dialog = introduction.EndWindow(2,parent=None)
+            end_dialog.exec_()
+            end_dialog.destroy()
+            self.beginGame()
 
 class HelpWindow(QtGui.QWidget):
     def __init__(self, parent=None):
