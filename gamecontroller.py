@@ -5,7 +5,7 @@ import ai
 class Gamecontroller:
     def __init__(self):
         self.usersnake = snake.Snake()
-        self.aisnake = ai_mod.AI()
+        self.aisnake = ai.AI()
     def reset(self):
         self.usersnake.__init__()
         self.aisnake.__init__()
