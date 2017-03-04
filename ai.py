@@ -7,8 +7,10 @@ class AI(Snake):
         self.step = 1
         self.hold = [399]
 
-    def cal(self, newAIHead, *snake_hold):
+
+    def cal(self, newAIHead, difficult, *snake_hold):
         "Main algorithm, calculate each direction's score"
+
         snake_hold1 = [x for x in snake_hold[0]]     #将参数转换为列表
 
         q = []    #q模拟一个队列
@@ -34,9 +36,13 @@ class AI(Snake):
                     continue
                 xx = x + t[i]
                 #判断xx是否被占据
-                ll = (self.step+dist[x]) / 5 + 4
-                if xx in snake_hold1[-ll-1:-1] or xx in self.hold[-ll:-1] or xx == newAIHead or xx == snake_hold1[-1] or xx==self.hold[-1]:
-                    continue
+                if difficult == 3 or difficult == 2:
+                    ll = (self.step+dist[x]) / 5+ 4 - dist[x]
+                    if xx in snake_hold1[-ll-1:-1] or xx in self.hold[-ll:-1] or xx == newAIHead or xx == snake_hold1[-1] or xx==self.hold[-1]:
+                        continue
+                if difficult == 1:
+                    if xx in snake_hold1 or xx in self.hold or xx == newAIHead:
+                        continue
                 if type[xx] != 0:
                     continue
                 dist[xx] = dist[x] + 1
@@ -45,25 +51,26 @@ class AI(Snake):
             l+=1
         #计算分数
         summary = 0
-        num1=0
-        num2=0
         for i in range(20*20):
             if dist[i] == 0:
                 continue
             if type[i] == 1:
-                num1+=1
-                summary -= 1/dist[i]**0.1
-                #summary -= 1 / dist[i]
+                if difficult == 3:
+                    summary -= 1/dist[i]**0.2
+                elif difficult == 2 or difficult == 1:
+                    summary -= 1/dist[i]**0.5
 
             else:
-                num2 += 1
                 summary += 1.0 / dist[i]**0.5
-                #summary += 1 / dist[i]
-        #print 'num1=', num1,' ','num2=', num2
         return summary
 
+      
     def choose(self, *snake_hold):
-        "analyze AI next move's direction"
+    "analyze AI next move's direction"
+        import mainwindow
+        print mainwindow.difficult
+        difficult = mainwindow.difficult
+
         snake_hold1 = [m for m in snake_hold[0]]
 
         t = [20, -20, -1, 1]     #下上左右
@@ -82,7 +89,7 @@ class AI(Snake):
             newAIHead = self.hold[-1] + t[i]
             if newAIHead in snake_hold1 or newAIHead in self.hold:
                 continue
-            try_val = self.cal(newAIHead, snake_hold1)
+            try_val = self.cal(newAIHead, difficult, snake_hold1)
             if try_val > val:
                 val = try_val
                 direction = i
