@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import snake
-import ai_mod
+import ai
 
 class Gamecontroller:
     def __init__(self):
