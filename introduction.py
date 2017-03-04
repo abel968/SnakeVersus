@@ -3,6 +3,7 @@ import sys
 from PyQt4 import QtGui,QtCore
 
 class HelpWindow(QtGui.QDialog):
+    'help window'
     def __init__(self, parent=None):
         QtGui.QDialog.__init__(self, parent)
         self.initUI()
@@ -37,6 +38,7 @@ class HelpWindow(QtGui.QDialog):
 
 
 class EndWindow(QtGui.QDialog):
+    'game finished window'
     def __init__(self,signal,parent=None):
         QtGui.QDialog.__init__(self,parent)
         self.end_text = setEndText(signal)

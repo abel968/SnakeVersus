@@ -3,12 +3,15 @@ import snake
 import ai
 
 class Gamecontroller:
+
     def __init__(self):
         self.usersnake = snake.Snake()
         self.aisnake = ai.AI()
+
     def reset(self):
         self.usersnake.__init__()
         self.aisnake.__init__()
+
     def isAIOver(self):
         x = self.aisnake.hold[-1]
         t = [20, -20, -1, 1]  #up,down,left,right

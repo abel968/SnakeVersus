@@ -8,7 +8,7 @@ class AI(Snake):
         self.hold = [399]
 
     def cal(self, newAIHead, *snake_hold):
-
+        "Main algorithm, calculate each direction's score"
         snake_hold1 = [x for x in snake_hold[0]]     #将参数转换为列表
 
         q = []    #q模拟一个队列
@@ -63,7 +63,7 @@ class AI(Snake):
         return summary
 
     def choose(self, *snake_hold):
-
+        "analyze AI next move's direction"
         snake_hold1 = [m for m in snake_hold[0]]
 
         t = [20, -20, -1, 1]     #下上左右
@@ -87,7 +87,7 @@ class AI(Snake):
                 val = try_val
                 direction = i
         if direction == -1:
-            print 'You win'
+            #print 'You win'
             return None
         elif direction == 0:
             return self.down()

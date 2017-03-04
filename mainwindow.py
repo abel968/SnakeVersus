@@ -18,6 +18,7 @@ class MainWindow(QtGui.QWidget):
         self.initUI()
 
     def initUI(self):
+        'init Background Grid'
         self.gc = gamecontroller.Gamecontroller()
         self.begin = True  # 表示游戏未开始
 
@@ -46,6 +47,7 @@ class MainWindow(QtGui.QWidget):
         vbox = QtGui.QVBoxLayout()
         vbox.addLayout(self.grid)
 
+        #add help_button and restart_button
         bottom_hbox = QtGui.QHBoxLayout()
         help_button = QtGui.QPushButton('(H)elp', parent=self)
         help_button.clicked.connect(self.showHelp)
@@ -130,6 +132,7 @@ class MainWindow(QtGui.QWidget):
         self.lables[self.ai_pre[-1]].setText('')
         self.lables[self.gc.aisnake.hold[-1]].setText('H')
         self.ai_pre = self.gc.aisnake.hold[:]
+
         if not self.gc.isUserOver():  # 若该条件成立，则输出用户输
             self.begin = False
             end_dialog = introduction.EndWindow(2,parent=None)
