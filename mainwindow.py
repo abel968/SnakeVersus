@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-import gamecontroller_mod,introduction
+import gamecontroller,introduction
 import sys
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
@@ -18,7 +18,7 @@ class MainWindow(QtGui.QWidget):
         self.initUI()
 
     def initUI(self):
-        self.gc = gamecontroller_mod.Gamecontroller()
+        self.gc = gamecontroller.Gamecontroller()
         self.begin = True  # 表示游戏未开始
 
         self.pe1 = QtGui.QPalette()
