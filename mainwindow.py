@@ -6,11 +6,13 @@ from PyQt4.QtCore import Qt
 from PyQt4.QtGui import *
 
 Window_Width = Window_Height = 600
-
+difficult = 1
 class MainWindow(QtGui.QWidget):
     global Window_Height,Window_Width
 
     def __init__(self, parent = None):
+        global difficult
+        difficult = 2
         QtGui.QMainWindow.__init__(self, parent)
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
