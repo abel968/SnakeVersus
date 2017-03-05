@@ -49,6 +49,7 @@ class SetPreferences(QtGui.QDialog):
 
 
 def set_theme(combo,dog):
+    'set color theme'
     if combo.currentText() == "GrassLand":
         dog.setcolor(QColor(192,253,123),QColor(255,255,0),QColor(255,0,0))
     elif combo.currentText() == "Dark":
@@ -58,6 +59,7 @@ def set_theme(combo,dog):
 
 
 def set_level(button):
+    'set difficult level'
     import mainwindow
     if button.text() == "Easy":
         if button.isChecked():
