@@ -2,6 +2,7 @@
 import sys
 from PyQt4 import QtGui,QtCore
 
+
 class HelpWindow(QtGui.QDialog):
     'help window'
     def __init__(self, parent=None):
@@ -71,7 +72,7 @@ class EndWindow(QtGui.QDialog):
 
 def setEndText(signal):
     'set the end_text according to the game signal.'
-    win_text = 'Congratuations! :D'
+    win_text = 'Congratulations! :D'
     defeat_text = 'Sorry, Defeat >_<'
     if signal == 1:
         return win_text
