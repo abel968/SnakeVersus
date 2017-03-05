@@ -7,6 +7,11 @@ from PyQt4.QtGui import *
 
 Window_Width = Window_Height = 600
 DIFFICULT = 1
+BackgroundColor = QColor(192,253,123)
+PlayerSnakeColor = QColor(255,255,0)
+AISnakeColor = QColor(255,0,0)
+
+
 class MainWindow(QtGui.QWidget):
     global Window_Height,Window_Width
 
@@ -23,11 +28,11 @@ class MainWindow(QtGui.QWidget):
         self.begin = True  # 表示游戏未开始
 
         self.pe1 = QtGui.QPalette()
-        self.pe1.setColor(self.backgroundRole(), QColor(192, 253, 123)) #configure the color of the Empty box
+        self.pe1.setColor(self.backgroundRole(), BackgroundColor)  #configure the color of the Empty box
         self.pe2 = QtGui.QPalette()
-        self.pe2.setColor(self.backgroundRole(), QColor(255, 255, 0))  # configure the color of the User box
+        self.pe2.setColor(self.backgroundRole(), PlayerSnakeColor)  # configure the color of the User box
         self.pe3 = QtGui.QPalette()
-        self.pe3.setColor(self.backgroundRole(), QColor(255, 0, 0))  # configure the color of the AI box
+        self.pe3.setColor(self.backgroundRole(), AISnakeColor)  # configure the color of the AI box
         self.grid = QtGui.QGridLayout()
 
         self.user_pre = [0]  # means the user's position in the previous step
@@ -66,6 +71,8 @@ class MainWindow(QtGui.QWidget):
     def beginGame(self):
         'Reset the game'
         self.begin = True    #表示游戏开始
+        for i in range(20*20):
+            self.lables[i].setPalette(self.pe1)
         for i in self.user_pre:
             self.lables[i].setPalette(self.pe1)
         self.lables[self.user_pre[-1]].setText('')
@@ -88,9 +95,15 @@ class MainWindow(QtGui.QWidget):
 
     def showPreference(self):
         'show preference window in new dialog'
-        pref_dialog = preferences.SetPreferences(parent=self)
+        pref_dialog = preferences.SetPreferences(self,parent=self)
         pref_dialog.exec_()
         pref_dialog.destroy()
+
+    def setcolor(self,bgcolor,plcolor,aicolor):
+        self.pe1.setColor(self.backgroundRole(), bgcolor)
+        self.pe2.setColor(self.backgroundRole(), plcolor)
+        self.pe3.setColor(self.backgroundRole(), aicolor)
+        self.beginGame()
 
     def keyPressEvent(self, event):
         'Use direction keys to control snake, Use R key to reset the game, Use H key for help'
