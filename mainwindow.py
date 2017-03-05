@@ -1,18 +1,16 @@
 # -*- coding:utf-8 -*-
-import gamecontroller,introduction
+import gamecontroller,introduction, preferences
 import sys
 from PyQt4 import QtGui,QtCore
 from PyQt4.QtCore import Qt
 from PyQt4.QtGui import *
 
 Window_Width = Window_Height = 600
-difficult = 1
+DIFFICULT = 1
 class MainWindow(QtGui.QWidget):
     global Window_Height,Window_Width
 
     def __init__(self, parent = None):
-        global difficult
-        difficult = 2
         QtGui.QMainWindow.__init__(self, parent)
         self.setWindowTitle('SnakeVersus')
         self.resize(Window_Width, Window_Height)
@@ -55,8 +53,11 @@ class MainWindow(QtGui.QWidget):
         help_button.clicked.connect(self.showHelp)
         restart_button = QtGui.QPushButton('(R)estart',parent=self)
         restart_button.clicked.connect(self.beginGame)
+        preference_button = QtGui.QPushButton('Setting',parent=self)
+        preference_button.clicked.connect(self.showPreference)
         bottom_hbox.addWidget(help_button)
         bottom_hbox.addWidget(restart_button)
+        bottom_hbox.addWidget(preference_button)
         vbox.addLayout(bottom_hbox)
         self.setLayout(vbox)
 
@@ -84,6 +85,12 @@ class MainWindow(QtGui.QWidget):
         help_dialog = introduction.HelpWindow(parent=self)
         help_dialog.exec_()
         help_dialog.destroy()
+
+    def showPreference(self):
+        'show preference window in new dialog'
+        pref_dialog = preferences.SetPreferences(parent=self)
+        pref_dialog.exec_()
+        pref_dialog.destroy()
 
     def keyPressEvent(self, event):
         'Use direction keys to control snake, Use R key to reset the game, Use H key for help'

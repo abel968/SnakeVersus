@@ -18,7 +18,7 @@ class HelpWindow(QtGui.QDialog):
 
         vbox = QtGui.QVBoxLayout()
         vbox.addStretch(1)
-        #or use label?
+# or use label?
         back_button = QtGui.QPushButton('Back',parent=self)
         back_button.clicked.connect(self.reject)
         vbox.addWidget(back_button)
@@ -65,14 +65,14 @@ class EndWindow(QtGui.QDialog):
 
     def drawText(self, event, qp):
         qp.setPen(QtGui.QColor(168, 34, 3))
-        qp.setFont(QtGui.QFont('Decorative', 14))
+        qp.setFont(QtGui.QFont('Decorative', 18))
         qp.drawText(event.rect(), QtCore.Qt.AlignCenter, self.end_text)
 
 
 def setEndText(signal):
     'set the end_text according to the game signal.'
-    win_text = 'Congratuations!\n:D'
-    defeat_text = 'Sorry\nDefeat >_<'
+    win_text = 'Congratuations! :D'
+    defeat_text = 'Sorry, Defeat >_<'
     if signal == 1:
         return win_text
     elif signal == 2:
