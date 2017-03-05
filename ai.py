@@ -66,10 +66,9 @@ class AI(Snake):
 
       
     def choose(self, *snake_hold):
-    "analyze AI next move's direction"
+        "analyze AI next move's direction"
         import mainwindow
-        print mainwindow.difficult
-        difficult = mainwindow.difficult
+        difficult = mainwindow.DIFFICULT
 
         snake_hold1 = [m for m in snake_hold[0]]
 
