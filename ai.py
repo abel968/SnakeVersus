@@ -37,7 +37,7 @@ class AI(Snake):
                 xx = x + t[i]
                 #判断xx是否被占据
                 if difficult == 3 or difficult == 2:
-                    ll = (self.step+dist[x]) / 5+ 4 - dist[x]
+                    ll = int((self.step+dist[x]) / 5+ 4 - dist[x])
                     if xx in snake_hold1[-ll-1:-1] or xx in self.hold[-ll:-1] or xx == newAIHead or xx == snake_hold1[-1] or xx==self.hold[-1]:
                         continue
                 if difficult == 1:
